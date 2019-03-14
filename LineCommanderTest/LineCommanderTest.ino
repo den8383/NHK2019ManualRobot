@@ -3,14 +3,13 @@ LineCommander sen = LineCommander(200,0,0,0);
 
 
 
-
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  sen.SetL(A1,A4,A0);
-  sen.SetR(A2,A6,A3);
-  sen.SetF(A8,A9);
-  sen.SetB(A10,A11);
+  sen.SetL_D(51,52,53);
+  sen.SetR_D(49,48,47);
+  sen.SetF_A(A8,A9);
+  sen.SetB_A(A10,A11);
   /*
   for(int i = 0; i < 200; i++){
     sen.Print();

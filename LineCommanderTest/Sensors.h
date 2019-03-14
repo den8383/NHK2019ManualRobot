@@ -14,7 +14,7 @@ class Sensors{
     MakeSensor();
     m_val.resize(tmp->Size());
   }
-  float Trace(int);
+  float Trace(int, int);
   
   void Print();
   std::vector<int> val;
@@ -26,6 +26,7 @@ class Sensors{
   void MakeSensor();
   float CalSum();
   float POWSum;
+  int mode;
   //CrSensor crsen;
 };
 
