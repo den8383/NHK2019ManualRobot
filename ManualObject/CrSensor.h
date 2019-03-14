@@ -5,7 +5,7 @@ class CrSensor
 {
   public:
   CrSensor(int ReadPin);
-  void TraceD();
+  float TraceD();
   int TraceA();
   int TraceV(int TraceHold);
   void PrintA();

@@ -7,9 +7,10 @@ CrSensor::CrSensor(int ReadPin)
   pinMode(m_ReadPin,INPUT);
 }
 
-void CrSensor::TraceD()
+float CrSensor::TraceD()
 {
   m_TrValueD = 1 - digitalRead(m_ReadPin);
+  return m_TrValueD;
 }
 
 int CrSensor::TraceV(int TraceHold)

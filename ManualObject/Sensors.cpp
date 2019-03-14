@@ -3,9 +3,16 @@
 
 
 
-float Sensors::Trace(int TraceHold){
-  for(int i = 0; i < tmp->Size(); i++){
-    m_val[i] = crsen[i].TraceV(TraceHold);
+float Sensors::Trace(int Mode, int TraceHold){
+  mode = Mode;
+  if(mode == 1){
+    for(int i = 0; i < tmp->Size(); i++){
+      m_val[i] = crsen[i].TraceV(TraceHold);
+    }
+  }else if(mode == 0){
+    for(int i = 0; i < tmp->Size(); i++){
+      m_val[i] = crsen[i].TraceD();
+    }
   }
   return CalSum();
 }

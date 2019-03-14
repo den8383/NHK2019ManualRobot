@@ -2,10 +2,10 @@
 #include "DegSensor.h"
 
 void DegSensor::Trace(int TraceHold){
-  r = senR->Trace(TraceHold);
-  l = senL->Trace(TraceHold);
-  f = senF->Trace(TraceHold);
-  b = senB->Trace(TraceHold);
+  r = senR->Trace(R_DA,TraceHold);
+  l = senL->Trace(L_DA,TraceHold);
+  f = senF->Trace(F_DA,TraceHold);
+  b = senB->Trace(B_DA,TraceHold);
 }
 
 float DegSensor::TraceAng(int TraceHold){
