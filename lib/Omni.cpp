@@ -120,19 +120,6 @@ void Omni::Go(float power, float deg){
   }
 }
 
-void Omni::Rotation(float power,float deg){
-  motor1->onDeg(power,deg/2 - dirtheta-90);
-  motor2->onDeg(power,deg/2 - dirtheta-90);
-  motor3->onDeg(power,deg/2 - dirtheta-90);
-  motor4->onDeg(power,deg/2 - dirtheta-90);
-  if(power == 0){
-    motor1->off();
-    motor2->off();
-    motor3->off();
-    motor4->off();
-  }
-}
-
 void Omni::Stop(){
   motor1->off();
   motor2->off();

@@ -12,7 +12,7 @@ float DegSensor::TraceAng(int TraceHold){
 //  return 1*(degsen->Trace(TraceHold) - 0.5)/0.5;
 //  return degsen->MAX();
   Trace(TraceHold);
-  return atan2(r - l,f - b)*180/PI;
+  return -atan2(r - l,f - b)*180/PI;
 
 }
 

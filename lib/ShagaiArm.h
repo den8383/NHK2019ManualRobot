@@ -19,7 +19,7 @@ class ShagaiArm{
   int m_JmotorPin1;
   int m_JmotorPin2;
   float m_mode = 0;
-  int OnRATIO = 1;
+  int OnRATIO = 2;
   int OffRATIO = 1;
   AIR *air;
   Motor *Jmotor;

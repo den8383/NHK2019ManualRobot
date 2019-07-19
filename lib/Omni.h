@@ -20,7 +20,6 @@ class Omni
   void TurnL();
   void DriftR();
   void DriftL();
-  void Rotation(float,float);
   void Go(float,float);
   void Stop();
   void Print();

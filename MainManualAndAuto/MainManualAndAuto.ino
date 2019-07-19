@@ -7,19 +7,21 @@
 #include "GeregeArm.h"
 #include "InjectionMachine.h"
 #include "LineCommander.h"
+#include "AIR.h"
 
 USB Usb;
 BTD Btd(&Usb);
 PS3BT PS3(&Btd);
 PS3Con ps3con = PS3Con();
-Omni omni = Omni(2, 3, 45, 46, 6, 9, 4, 5, 1.3);
-ShagaiArm armS = ShagaiArm(31, 32, 33, 0);
+Omni omni = Omni(  5, 4, 9, 6, 46, 45, 3, 2,  1.3);
+//ShagaiArm armS = ShagaiArm(31, 32, 33, 0);
+ShagaiArm armS = ShagaiArm(49, 22, 24, 0);
 GeregeArm armG = GeregeArm(36, 37, 38, 39, 0);
 InjectionMachine IM = InjectionMachine(40, 41, 0);
-LineCommander sen = LineCommander(200, 0, 0, 0);
+LineCommander sen = LineCommander(200,10, 0, 0, 0);
+AIR air = AIR(32);
+Motor motor = Motor(42,43,0);
 
-//
-//
 void setup() {
   Serial.begin(115200);
   while (!Serial); // Wait for serial port to connect - used on Leonardo, Teensy and other boards with built-in USB CDC serial connection
@@ -48,23 +50,25 @@ void loop() {
 
     if (PS3.getButtonPress(TRIANGLE)) {
       Serial.print(F("\r\nTraingle"));
-      armG.Bend();
+//      armG.Bend();
+      motor.onF();
     }
     else if (PS3.getButtonPress(CIRCLE)) {
       Serial.print(F("\r\nCircle"));
-      armG.Grab();
+      armS.Grab();
     }
     else if (PS3.getButtonPress(CROSS)) {
       Serial.print(F("\r\nCross"));
-      armG.Stretch();
+//      armG.Stretch();
+      motor.onR();
     }
     else if (PS3.getButtonPress(SQUARE)) {
       Serial.print(F("\r\nSquare"));
-      armG.Release();
+      armS.Release();
     }
     else if (PS3.getButtonPress(UP)) {
       Serial.print(F("\r\nUp"));
-      armS.Bend();
+      armS.Stretch();
     }
     else  if (PS3.getButtonPress(RIGHT)) {
       Serial.print(F("\r\nRight"));
@@ -72,7 +76,7 @@ void loop() {
     }
     else  if (PS3.getButtonPress(DOWN)) {
       Serial.print(F("\r\nDown"));
-      armS.Stretch();
+      armS.Bend();
     }
     else  if (PS3.getButtonPress(LEFT)) {
       Serial.print(F("\r\nLeft"));
@@ -90,8 +94,13 @@ void loop() {
       Serial.print(F("    distans "));
       Serial.print(sen.Distance(), 4);
       Serial.print(F("  "));
-      omni.Rotation(255,sen.Rotate());
-//      omni.Go(255*sen.Distance(),sen.Angle());
+      omni.Rotation(225,sen.Rotate()+9);
+      if(sen.Angle() > -15 && sen.Angle() < 15){
+        omni.Front();
+      }else{
+        
+        omni.Go(100*sen.Distance(),sen.Angle()+90);
+      }
       omni.Print();
       Serial.println();
     }
@@ -105,19 +114,30 @@ void loop() {
     }
     else if (PS3.getButtonPress(R2)) {
       Serial.print(F("\r\nR2"));
+      Serial.print(F("auto:"));
+      Serial.print(F("deg "));
+      Serial.print(sen.Angle(), 4);
+      Serial.print(F("    distans "));
+      Serial.print(sen.Distance(), 4);
+      Serial.print(F("  "));
+      omni.Print();
+      Serial.println();
     }
     else if (PS3.getButtonPress(R3)) {
       Serial.print(F("\r\nR3"));
     }
     else if (PS3.getButtonPress(SELECT)) {
       Serial.print(F("\r\nSelect"));
+      air.OFA();
     }
     else if (PS3.getButtonPress(START)) {
       Serial.print(F("\r\nStart"));
-      IM.Inject();
+//      IM.Inject();
+      air.ONA();
     }
     else {
       //    my_left_analog_pad(ps3con.AnalogPadDirection(PS3.getAnalogHat(LeftHatX), PS3.getAnalogHat(LeftHatY)));
+      motor.off();
       omni.Go(ps3con.AnalogPadDistance(PS3.getAnalogHat(LeftHatX), PS3.getAnalogHat(LeftHatY)), ps3con.AnalogPadAngle(PS3.getAnalogHat(LeftHatX), PS3.getAnalogHat(LeftHatY)));
       omni.Print();
       Serial.println(F("\r"));

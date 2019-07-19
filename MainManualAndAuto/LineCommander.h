@@ -5,7 +5,7 @@
 
 class LineCommander{
   public:
-  LineCommander(int ,float ,float ,float);
+  LineCommander(int ,float,float ,float ,float);
   template<class...Args>
   void SetR_D(Args...args){
    sen->SetR_D(args...);
@@ -54,12 +54,16 @@ class LineCommander{
   float Rotate();
   private:
   int TraceHold;
+  float Sensitivity;
   float TargetAngle;
   float TargetDistance;
   float TargetRotate;
   float angle;
   float distance;
   float rotate;
+  float CorrectedAngle;
+  float CorrectedDistance;
+  float CorrectedRotate;
   LineSensor *sen;
   
 };

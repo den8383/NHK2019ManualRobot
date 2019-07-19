@@ -117,7 +117,7 @@ void Motor::off(void)
   else
   {
     ac(0);
-    velocity();
+    
     if(m_ac > 0){
       analogWrite(m_MotorPin1, m_ac);
       analogWrite(m_MotorPin2, LOW);
@@ -229,7 +229,7 @@ void Motor::print(void)
 //    p_val = m_ac;
     p_val = m_velocity;
     Serial.print(F("velocity:["));
-    Serial.print(p_val,4);
+    Serial.print(p_val);
     Serial.print(F("] "));
   }
 }
