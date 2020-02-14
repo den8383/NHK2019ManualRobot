@@ -233,4 +233,3 @@ void Motor::print(void)
     Serial.print(F("] "));
   }
 }
-
